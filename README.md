@@ -2,7 +2,7 @@ practice midterm
 ================
 madison dunn
 
-## Midterm.
+## Midterm
 
 #### 1\. Map the delay by destination.
 
