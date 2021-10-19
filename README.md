@@ -2,14 +2,11 @@ practice midterm
 ================
 madison dunn
 
-## Midterm
+## Practice Midterm
+
+  - github: <https://github.com/madisondunn8/433PracticeMidterm>
 
 #### 1\. Map the delay by destination.
-
-Compute the average delay by destination, then join on the airports data
-frame so you can show the spatial distribution of delays. Hereâ€™s an
-easy way to draw a map of the United States. You are welcome to use this
-code or some other code.
 
 You might want to use the size or colour of the points to display the
 average delay for each
@@ -66,34 +63,29 @@ conjecture using data. (Let’s assume that the tail number of a plane
 does not change.)
 
 ``` r
-flights_1 = flights %>% 
-  filter(!is.na(tailnum)) %>% 
+flights %>% 
   group_by(tailnum,carrier) %>% 
-  summarise(n=n()) %>% 
-  filter(n>1) %>% 
-  print(n=6)
+  summarise(n()) %>% 
+  group_by(tailnum) %>% 
+  summarise(n())
 ```
 
     ## `summarise()` has grouped output by 'tailnum'. You can override using the `.groups` argument.
 
-    ## # A tibble: 3,889 x 3
-    ## # Groups:   tailnum [3,872]
-    ##   tailnum carrier     n
-    ##   <chr>   <chr>   <int>
-    ## 1 D942DN  DL          4
-    ## 2 N0EGMQ  MQ        371
-    ## 3 N10156  EV        153
-    ## 4 N102UW  US         48
-    ## 5 N103US  US         46
-    ## 6 N104UW  US         47
-    ## # ... with 3,883 more rows
-
-``` r
-ggplot(flights_1,aes(x=tailnum,y=n,col=carrier))+
-  geom_jitter()
-```
-
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+    ## # A tibble: 4,044 x 2
+    ##    tailnum `n()`
+    ##    <chr>   <int>
+    ##  1 D942DN      1
+    ##  2 N0EGMQ      1
+    ##  3 N10156      1
+    ##  4 N102UW      1
+    ##  5 N103US      1
+    ##  6 N104UW      1
+    ##  7 N10575      1
+    ##  8 N105UW      1
+    ##  9 N107US      1
+    ## 10 N108UW      1
+    ## # ... with 4,034 more rows
 
 #### 3a. Plane’s average speed.
 
